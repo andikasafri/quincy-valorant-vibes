@@ -127,24 +127,30 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-valorant-dark text-valorant-light">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section
         id="home"
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
-        style={{
-          backgroundImage: "url('/placeholder.svg')", // Replace with Valorant-themed background
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed", // Added parallax effect
-        }}
       >
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute inset-0 w-full h-full object-cover" // Make the video cover the entire section
+        >
+          <source src="/public/val-back.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-valorant-dark/70 to-valorant-dark" />
         <div className="relative z-10 text-center">
           <h1 className="text-6xl md:text-8xl font-bold mb-4 animate-fade-in-up">
             TEAM QUINCY
           </h1>
-          <p className="text-xl md:text-2xl text-valorant-gray animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <p
+            className="text-xl md:text-2xl text-valorant-gray animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
             Rising to the top of Valorant competitive scene
           </p>
         </div>
@@ -157,11 +163,11 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fade-in-up">
               <p className="text-lg">
-                Team Quincy is more than just a competitive Valorant team - we're a
-                family of dedicated players pushing the boundaries of tactical
-                gameplay. Founded with the vision to dominate the competitive
-                scene, we bring together raw talent, strategic minds, and
-                unmatched teamwork.
+                Team Quincy is more than just a competitive Valorant team -
+                we're a family of dedicated players pushing the boundaries of
+                tactical gameplay. Founded with the vision to dominate the
+                competitive scene, we bring together raw talent, strategic
+                minds, and unmatched teamwork.
               </p>
               <p className="text-lg">
                 Our unique approach to the game and commitment to excellence has
@@ -169,7 +175,10 @@ const Index = () => {
                 playing the game; we're redefining it.
               </p>
             </div>
-            <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div
+              className="relative animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               <img
                 src="/placeholder.svg" // Replace with team image
                 alt="Team Quincy"
@@ -197,33 +206,48 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h2 className="text-2xl font-bold text-valorant-red mb-4">QUINCY</h2>
+              <h2 className="text-2xl font-bold text-valorant-red mb-4">
+                QUINCY
+              </h2>
               <p className="text-valorant-gray">
                 © {new Date().getFullYear()} Team Quincy. All rights reserved.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-valorant-light mb-4">Quick Links</h3>
+              <h3 className="text-xl font-bold text-valorant-light mb-4">
+                Quick Links
+              </h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#home" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                  <a
+                    href="#home"
+                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  >
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                  <a
+                    href="#about"
+                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  >
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#team" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                  <a
+                    href="#team"
+                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  >
                     Team
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-valorant-light mb-4">Follow Us</h3>
+              <h3 className="text-xl font-bold text-valorant-light mb-4">
+                Follow Us
+              </h3>
               <div className="flex space-x-4">
                 <a
                   href="#"

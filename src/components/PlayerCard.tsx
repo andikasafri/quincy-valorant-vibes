@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PlayerStats {
   kills: number;
@@ -40,6 +41,7 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
           src={player.image}
           alt={player.name}
           className="w-full h-64 object-cover"
+          loading="lazy"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-valorant-dark to-transparent p-4">
           <h3 className="text-valorant-light text-xl font-bold">{player.name}</h3>
@@ -60,6 +62,7 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
                 src={player.agentImage}
                 alt={player.agent}
                 className="w-full h-auto rounded-lg"
+                loading="lazy"
               />
               <div className="text-center">
                 <p className="text-xl font-bold">{player.agent}</p>
@@ -95,6 +98,22 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={() => {/* Add navigation logic */}}
+              className="p-2 hover:bg-valorant-red/20 rounded-full transition-colors"
+              aria-label="Previous player"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => {/* Add navigation logic */}}
+              className="p-2 hover:bg-valorant-red/20 rounded-full transition-colors"
+              aria-label="Next player"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </DialogContent>
       </Dialog>

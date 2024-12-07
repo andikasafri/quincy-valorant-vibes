@@ -35,7 +35,90 @@ const players = [
       kd: 1.43,
     },
   },
-  // Add more players as needed
+  {
+    id: 3,
+    name: "Viper",
+    agent: "Viper",
+    rank: "Immortal 3",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 2890,
+      deaths: 1950,
+      assists: 1432,
+      kd: 1.48,
+    },
+  },
+  {
+    id: 4,
+    name: "Phoenix",
+    agent: "Phoenix",
+    rank: "Radiant",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 3156,
+      deaths: 2234,
+      assists: 1678,
+      kd: 1.41,
+    },
+  },
+  {
+    id: 5,
+    name: "Sage",
+    agent: "Sage",
+    rank: "Immortal 2",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 2345,
+      deaths: 1876,
+      assists: 2543,
+      kd: 1.25,
+    },
+  },
+  {
+    id: 6,
+    name: "Cypher",
+    agent: "Cypher",
+    rank: "Immortal 1",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 2567,
+      deaths: 2012,
+      assists: 1345,
+      kd: 1.28,
+    },
+  },
+  {
+    id: 7,
+    name: "Sova",
+    agent: "Sova",
+    rank: "Radiant",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 2987,
+      deaths: 2145,
+      assists: 1897,
+      kd: 1.39,
+    },
+  },
+  {
+    id: 8,
+    name: "Raze",
+    agent: "Raze",
+    rank: "Immortal 3",
+    image: "/placeholder.svg", // Replace with actual player image
+    agentImage: "/placeholder.svg", // Replace with actual agent image
+    stats: {
+      kills: 3234,
+      deaths: 2456,
+      assists: 1234,
+      kd: 1.32,
+    },
+  },
 ];
 
 const Index = () => {
@@ -102,7 +185,7 @@ const Index = () => {
       <section id="team" className="py-20">
         <div className="container mx-auto px-4">
           <SectionTitle title="Our Roster" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {players.map((player) => (
               <PlayerCard key={player.id} player={player} />
             ))}

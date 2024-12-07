@@ -4,6 +4,7 @@ import PlayerCard from "@/components/PlayerCard";
 import BackToTop from "@/components/BackToTop";
 import NewsSection from "@/components/NewsSection";
 import AchievementsSection from "@/components/AchievementsSection";
+import RosterSection from "@/components/RosterSection";
 import { Github, Twitter, Instagram } from "lucide-react";
 
 const players = [
@@ -182,16 +183,7 @@ const Index = () => {
       <NewsSection />
 
       {/* Team Section */}
-      <section id="team" className="py-20">
-        <div className="container mx-auto px-4">
-          <SectionTitle title="Our Roster" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {players.map((player) => (
-              <PlayerCard key={player.id} player={player} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <RosterSection players={players} />
 
       {/* Achievements Section */}
       <AchievementsSection />

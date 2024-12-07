@@ -26,10 +26,24 @@ interface PlayerInfo {
 
 interface PlayerCardProps {
   player: PlayerInfo;
+  allPlayers: PlayerInfo[];
 }
 
-const PlayerCard = ({ player }: PlayerCardProps) => {
+const PlayerCard = ({ player: initialPlayer, allPlayers }: PlayerCardProps) => {
   const [showModal, setShowModal] = useState(false);
+  const [currentPlayer, setCurrentPlayer] = useState(initialPlayer);
+
+  const currentIndex = allPlayers.findIndex((p) => p.id === currentPlayer.id);
+
+  const handlePrevious = () => {
+    const newIndex = currentIndex === 0 ? allPlayers.length - 1 : currentIndex - 1;
+    setCurrentPlayer(allPlayers[newIndex]);
+  };
+
+  const handleNext = () => {
+    const newIndex = currentIndex === allPlayers.length - 1 ? 0 : currentIndex + 1;
+    setCurrentPlayer(allPlayers[newIndex]);
+  };
 
   return (
     <>
@@ -38,14 +52,14 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
         onClick={() => setShowModal(true)}
       >
         <img
-          src={player.image}
-          alt={player.name}
+          src={initialPlayer.image}
+          alt={initialPlayer.name}
           className="w-full h-64 object-cover"
           loading="lazy"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-valorant-dark to-transparent p-4">
-          <h3 className="text-valorant-light text-xl font-bold">{player.name}</h3>
-          <p className="text-valorant-gray">{player.agent}</p>
+          <h3 className="text-valorant-light text-xl font-bold">{initialPlayer.name}</h3>
+          <p className="text-valorant-gray">{initialPlayer.agent}</p>
         </div>
       </div>
 
@@ -53,19 +67,19 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
         <DialogContent className="bg-valorant-dark text-valorant-light max-w-3xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-valorant-red">
-              {player.name}
+              {currentPlayer.name}
             </DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <img
-                src={player.agentImage}
-                alt={player.agent}
+                src={currentPlayer.agentImage}
+                alt={currentPlayer.agent}
                 className="w-full h-auto rounded-lg"
                 loading="lazy"
               />
               <div className="text-center">
-                <p className="text-xl font-bold">{player.agent}</p>
+                <p className="text-xl font-bold">{currentPlayer.agent}</p>
                 <p className="text-valorant-gray">Main Agent</p>
               </div>
             </div>
@@ -73,7 +87,7 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
               <div>
                 <h4 className="text-lg font-semibold mb-2">Current Rank</h4>
                 <p className="text-valorant-red text-2xl font-bold">
-                  {player.rank}
+                  {currentPlayer.rank}
                 </p>
               </div>
               <div>
@@ -81,19 +95,19 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-valorant-dark/50 p-4 rounded">
                     <p className="text-sm text-valorant-gray">K/D Ratio</p>
-                    <p className="text-xl font-bold">{player.stats.kd}</p>
+                    <p className="text-xl font-bold">{currentPlayer.stats.kd}</p>
                   </div>
                   <div className="bg-valorant-dark/50 p-4 rounded">
                     <p className="text-sm text-valorant-gray">Kills</p>
-                    <p className="text-xl font-bold">{player.stats.kills}</p>
+                    <p className="text-xl font-bold">{currentPlayer.stats.kills}</p>
                   </div>
                   <div className="bg-valorant-dark/50 p-4 rounded">
                     <p className="text-sm text-valorant-gray">Deaths</p>
-                    <p className="text-xl font-bold">{player.stats.deaths}</p>
+                    <p className="text-xl font-bold">{currentPlayer.stats.deaths}</p>
                   </div>
                   <div className="bg-valorant-dark/50 p-4 rounded">
                     <p className="text-sm text-valorant-gray">Assists</p>
-                    <p className="text-xl font-bold">{player.stats.assists}</p>
+                    <p className="text-xl font-bold">{currentPlayer.stats.assists}</p>
                   </div>
                 </div>
               </div>
@@ -101,14 +115,14 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
           </div>
           <div className="flex justify-between mt-4">
             <button
-              onClick={() => {/* Add navigation logic */}}
+              onClick={handlePrevious}
               className="p-2 hover:bg-valorant-red/20 rounded-full transition-colors"
               aria-label="Previous player"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
-              onClick={() => {/* Add navigation logic */}}
+              onClick={handleNext}
               className="p-2 hover:bg-valorant-red/20 rounded-full transition-colors"
               aria-label="Next player"
             >

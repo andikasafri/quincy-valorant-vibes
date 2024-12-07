@@ -1,6 +1,10 @@
 import Navbar from "@/components/Navbar";
 import SectionTitle from "@/components/SectionTitle";
 import PlayerCard from "@/components/PlayerCard";
+import BackToTop from "@/components/BackToTop";
+import NewsSection from "@/components/NewsSection";
+import AchievementsSection from "@/components/AchievementsSection";
+import { Github, Twitter, Instagram } from "lucide-react";
 
 const players = [
   {
@@ -47,6 +51,7 @@ const Index = () => {
           backgroundImage: "url('/placeholder.svg')", // Replace with Valorant-themed background
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundAttachment: "fixed", // Added parallax effect
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-valorant-dark/70 to-valorant-dark" />
@@ -90,6 +95,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* News Section */}
+      <NewsSection />
+
       {/* Team Section */}
       <section id="team" className="py-20">
         <div className="container mx-auto px-4">
@@ -102,33 +110,51 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Achievements Section */}
+      <AchievementsSection />
+
       {/* Connect Section */}
       <section id="connect" className="py-20 bg-valorant-dark/90">
         <div className="container mx-auto px-4">
           <SectionTitle title="Connect With Us" />
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="bg-valorant-dark/50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Join Our Discord</h3>
-              <p className="text-valorant-gray mb-6">
-                Connect with our community, participate in tournaments, and find
-                teammates for your next competitive match!
-              </p>
-              <iframe
-                src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID"
-                width="100%"
-                height="400"
-                frameBorder="0"
-                sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-                className="rounded-lg"
-              ></iframe>
-              <a
-                href="https://discord.gg/YOUR_INVITE_LINK"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-6 px-8 py-3 bg-valorant-red text-white font-bold rounded-lg hover:bg-valorant-red/80 transition-colors"
-              >
-                Join Now
-              </a>
+          <div className="max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-valorant-dark/50 p-8 rounded-lg">
+                <h3 className="text-2xl font-bold mb-4">Join Our Discord</h3>
+                <p className="text-valorant-gray mb-6">
+                  Connect with our community, participate in tournaments, and find
+                  teammates for your next competitive match!
+                </p>
+                <iframe
+                  src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID"
+                  width="100%"
+                  height="400"
+                  frameBorder="0"
+                  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                  className="rounded-lg"
+                ></iframe>
+              </div>
+              <div className="bg-valorant-dark/50 p-8 rounded-lg">
+                <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
+                <form className="space-y-4">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="w-full p-3 bg-valorant-dark/30 rounded-lg border border-valorant-gray/30 text-valorant-light"
+                  />
+                  <textarea
+                    placeholder="Your message"
+                    rows={6}
+                    className="w-full p-3 bg-valorant-dark/30 rounded-lg border border-valorant-gray/30 text-valorant-light"
+                  ></textarea>
+                  <button
+                    type="submit"
+                    className="w-full bg-valorant-red text-white font-bold py-3 rounded-lg hover:bg-valorant-red/80 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -137,14 +163,64 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-valorant-dark py-12">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-valorant-red mb-4">QUINCY</h2>
-            <p className="text-valorant-gray mb-6">
-              © {new Date().getFullYear()} Team Quincy. All rights reserved.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h2 className="text-2xl font-bold text-valorant-red mb-4">QUINCY</h2>
+              <p className="text-valorant-gray">
+                © {new Date().getFullYear()} Team Quincy. All rights reserved.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-valorant-light mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#home" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#team" className="text-valorant-gray hover:text-valorant-red transition-colors">
+                    Team
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-valorant-light mb-4">Follow Us</h3>
+              <div className="flex space-x-4">
+                <a
+                  href="#"
+                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter />
+                </a>
+                <a
+                  href="#"
+                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram />
+                </a>
+                <a
+                  href="#"
+                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
+
+      <BackToTop />
     </div>
   );
 };

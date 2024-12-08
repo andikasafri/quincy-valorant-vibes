@@ -1,5 +1,6 @@
 import { useInView } from "react-intersection-observer";
 import Navbar from "@/components/Navbar";
+import HomeSection from "@/components/HomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import BackToTop from "@/components/BackToTop";
 import NewsSection from "@/components/NewsSection";
@@ -124,64 +125,17 @@ const players = [
 ];
 
 const Index = () => {
-  const { ref: heroRef, inView: heroInView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const { ref: aboutRef, inView: aboutInView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/val-back.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-valorant-dark/70 to-valorant-dark" />
-        <div
-          ref={heroRef}
-          className={`relative z-10 text-center section-animate ${
-            heroInView ? "in-view" : ""
-          }`}
-        >
-          <h1 className="text-6xl md:text-8xl font-bold mb-4">
-            TEAM QUINCY
-          </h1>
-          <p
-            className="text-xl md:text-2xl text-valorant-gray"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Rising to the top of Valorant competitive scene
-          </p>
-        </div>
-      </section>
-
+      <HomeSection />
+      
       {/* About Section */}
       <section id="about" className="py-20 bg-valorant-dark/90">
         <div className="container mx-auto px-4">
           <SectionTitle title="About Us" />
-          <div
-            ref={aboutRef}
-            className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center section-animate ${
-              aboutInView ? "in-view" : ""
-            }`}
-          >
-            <div className="space-y-6 animate-fade-in-up">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
               <p className="text-lg">
                 Team Quincy is more than just a competitive Valorant team -
                 we're a family of dedicated players pushing the boundaries of
@@ -195,10 +149,7 @@ const Index = () => {
                 playing the game; we're redefining it.
               </p>
             </div>
-            <div
-              className="relative animate-fade-in-up"
-              style={{ animationDelay: "0.2s" }}
-            >
+            <div className="relative">
               <img
                 src="/placeholder.svg" // Replace with team image
                 alt="Team Quincy"

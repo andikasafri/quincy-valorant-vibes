@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,15 +15,43 @@ const Navbar = () => {
       setIsVisible(currentScrollPos > 100);
     };
 
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+      
+      // Navigation with number keys
+      if (e.altKey) {
+        switch (e.key) {
+          case "1":
+            document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "2":
+            document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "3":
+            document.querySelector("#team")?.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "4":
+            document.querySelector("#connect")?.scrollIntoView({ behavior: "smooth" });
+            break;
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyPress);
+    };
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Team", href: "#team" },
-    { name: "Connect", href: "#connect" },
+    { name: t("nav.home"), href: "#home" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.team"), href: "#team" },
+    { name: t("nav.connect"), href: "#connect" },
   ];
 
   return (
@@ -37,8 +69,8 @@ const Navbar = () => {
           </div>
           
           {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -49,10 +81,16 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
+            <div className="flex items-center space-x-2 ml-4">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <LanguageSwitcher />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-valorant-light hover:text-valorant-red"

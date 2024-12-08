@@ -88,14 +88,30 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  section {
+    @apply min-h-screen snap-start snap-always;
+  }
+
+  html {
+    @apply scroll-smooth snap-y snap-mandatory;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .section-content {
+    @apply h-screen flex items-center justify-center relative overflow-hidden;
+  }
+
+  .section-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-valorant-dark/70 to-valorant-dark;
+  }
+
+  .section-container {
+    @apply relative z-10 container mx-auto px-4;
   }
 }

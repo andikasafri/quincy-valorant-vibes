@@ -5,47 +5,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setIsVisible(currentScrollPos > 100);
-    };
-
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsMobileMenuOpen(false);
-      }
-      
-      // Navigation with number keys
-      if (e.altKey) {
-        switch (e.key) {
-          case "1":
-            document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
-            break;
-          case "2":
-            document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
-            break;
-          case "3":
-            document.querySelector("#team")?.scrollIntoView({ behavior: "smooth" });
-            break;
-          case "4":
-            document.querySelector("#connect")?.scrollIntoView({ behavior: "smooth" });
-            break;
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
 
   const navItems = [
     { name: t("nav.home"), href: "#home" },
@@ -55,13 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isVisible
-          ? "top-0 bg-valorant-dark/90 backdrop-blur-sm"
-          : "-top-20 bg-transparent"
-      }`}
-    >
+    <nav className="fixed w-full z-50 bg-valorant-dark/90 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">

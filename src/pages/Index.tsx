@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import HomeSection from "@/components/HomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import BackToTop from "@/components/BackToTop";
-import NewsSection from "@/components/NewsSection";
 import AchievementsSection from "@/components/AchievementsSection";
 import RosterSection from "@/components/RosterSection";
 import ConnectSection from "@/components/ConnectSection";
@@ -135,33 +134,30 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <SectionTitle title="About Us" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg">
+            <div className="space-y-6 animate-fade-in-up">
+              <p className="text-lg text-valorant-light">
                 Team Quincy is more than just a competitive Valorant team -
                 we're a family of dedicated players pushing the boundaries of
                 tactical gameplay. Founded with the vision to dominate the
                 competitive scene, we bring together raw talent, strategic
                 minds, and unmatched teamwork.
               </p>
-              <p className="text-lg">
+              <p className="text-lg text-valorant-light">
                 Our unique approach to the game and commitment to excellence has
                 made us stand out in the Valorant community. We're not just
                 playing the game; we're redefining it.
               </p>
             </div>
-            <div className="relative">
+            <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               <img
-                src="/placeholder.svg" // Replace with team image
+                src="/placeholder.svg"
                 alt="Team Quincy"
-                className="rounded-lg shadow-2xl"
+                className="rounded-lg shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />
             </div>
           </div>
         </div>
       </section>
-
-      {/* News Section */}
-      <NewsSection />
 
       {/* Team Section */}
       <RosterSection players={players} />
@@ -185,60 +181,35 @@ const Index = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4">
-                Quick Links
-              </h3>
+              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#home"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <a href="#home" className="text-muted-foreground hover:text-primary transition-colors">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#about"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
                     About
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#team"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <a href="#team" className="text-muted-foreground hover:text-primary transition-colors">
                     Team
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4">
-                Follow Us
-              </h3>
+              <h3 className="text-xl font-bold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label="Twitter"
-                >
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter">
                   <Twitter />
                 </a>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label="Instagram"
-                >
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
                   <Instagram />
                 </a>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label="GitHub"
-                >
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
                   <Github />
                 </a>
               </div>

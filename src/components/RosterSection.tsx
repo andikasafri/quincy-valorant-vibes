@@ -1,5 +1,14 @@
+import { useRef } from "react";
 import PlayerCard from "@/components/PlayerCard";
 import SectionTitle from "@/components/SectionTitle";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useInView } from "react-intersection-observer";
 
 interface PlayerStats {
   kills: number;
@@ -23,21 +32,36 @@ interface RosterSectionProps {
 }
 
 const RosterSection = ({ players }: RosterSectionProps) => {
-  // Only display first 2 players initially
-  const displayedPlayers = players.slice(0, 2);
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   return (
     <section id="team" className="py-20">
       <div className="container mx-auto px-4">
         <SectionTitle title="Our Roster" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {displayedPlayers.map((player) => (
-            <PlayerCard 
-              key={player.id} 
-              player={player} 
-              allPlayers={players}
-            />
-          ))}
+        <div
+          ref={ref}
+          className={`section-animate ${inView ? "in-view" : ""}`}
+        >
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <CarouselContent>
+              {players.map((player) => (
+                <CarouselItem key={player.id} className="md:basis-1/2 lg:basis-1/3">
+                  <PlayerCard player={player} allPlayers={players} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
     </section>

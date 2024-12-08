@@ -49,11 +49,11 @@
   }
 
   section {
-    @apply min-h-screen snap-start snap-always;
+    @apply min-h-screen;
   }
 
   html {
-    @apply scroll-smooth snap-y snap-mandatory;
+    @apply scroll-smooth;
   }
 
   body {
@@ -72,5 +72,13 @@
 
   .section-container {
     @apply relative z-10 container mx-auto px-4;
+  }
+
+  .section-animate {
+    @apply opacity-0 translate-y-10 transition-all duration-700;
+  }
+
+  .section-animate.in-view {
+    @apply opacity-100 translate-y-0;
   }
 }

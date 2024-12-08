@@ -1,6 +1,6 @@
+import { useInView } from "react-intersection-observer";
 import Navbar from "@/components/Navbar";
 import SectionTitle from "@/components/SectionTitle";
-import PlayerCard from "@/components/PlayerCard";
 import BackToTop from "@/components/BackToTop";
 import NewsSection from "@/components/NewsSection";
 import AchievementsSection from "@/components/AchievementsSection";
@@ -124,6 +124,16 @@ const players = [
 ];
 
 const Index = () => {
+  const { ref: heroRef, inView: heroInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const { ref: aboutRef, inView: aboutInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -137,18 +147,23 @@ const Index = () => {
           autoPlay
           loop
           muted
-          className="absolute inset-0 w-full h-full object-cover" // Make the video cover the entire section
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/val-back.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-valorant-dark/70 to-valorant-dark" />
-        <div className="relative z-10 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold mb-4 animate-fade-in-up">
+        <div
+          ref={heroRef}
+          className={`relative z-10 text-center section-animate ${
+            heroInView ? "in-view" : ""
+          }`}
+        >
+          <h1 className="text-6xl md:text-8xl font-bold mb-4">
             TEAM QUINCY
           </h1>
           <p
-            className="text-xl md:text-2xl text-valorant-gray animate-fade-in-up"
+            className="text-xl md:text-2xl text-valorant-gray"
             style={{ animationDelay: "0.2s" }}
           >
             Rising to the top of Valorant competitive scene
@@ -160,7 +175,12 @@ const Index = () => {
       <section id="about" className="py-20 bg-valorant-dark/90">
         <div className="container mx-auto px-4">
           <SectionTitle title="About Us" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div
+            ref={aboutRef}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center section-animate ${
+              aboutInView ? "in-view" : ""
+            }`}
+          >
             <div className="space-y-6 animate-fade-in-up">
               <p className="text-lg">
                 Team Quincy is more than just a competitive Valorant team -
@@ -201,7 +221,7 @@ const Index = () => {
       {/* Connect Section */}
       <ConnectSection />
 
-      {/* Footer - Remove snap-start class */}
+      {/* Footer */}
       <footer className="bg-background py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

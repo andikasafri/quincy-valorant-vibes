@@ -125,7 +125,7 @@ const players = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-valorant-dark text-valorant-light">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       {/* Hero Section */}
@@ -201,27 +201,27 @@ const Index = () => {
       {/* Connect Section */}
       <ConnectSection />
 
-      {/* Footer */}
-      <footer className="bg-valorant-dark py-12">
+      {/* Footer - Remove snap-start class */}
+      <footer className="bg-background py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h2 className="text-2xl font-bold text-valorant-red mb-4">
                 QUINCY
               </h2>
-              <p className="text-valorant-gray">
+              <p className="text-muted-foreground">
                 © {new Date().getFullYear()} Team Quincy. All rights reserved.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-valorant-light mb-4">
+              <h3 className="text-xl font-bold mb-4">
                 Quick Links
               </h3>
               <ul className="space-y-2">
                 <li>
                   <a
                     href="#home"
-                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     Home
                   </a>
@@ -229,7 +229,7 @@ const Index = () => {
                 <li>
                   <a
                     href="#about"
-                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     About
                   </a>
@@ -237,7 +237,7 @@ const Index = () => {
                 <li>
                   <a
                     href="#team"
-                    className="text-valorant-gray hover:text-valorant-red transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     Team
                   </a>
@@ -245,27 +245,27 @@ const Index = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-valorant-light mb-4">
+              <h3 className="text-xl font-bold mb-4">
                 Follow Us
               </h3>
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="Twitter"
                 >
                   <Twitter />
                 </a>
                 <a
                   href="#"
-                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram />
                 </a>
                 <a
                   href="#"
-                  className="text-valorant-gray hover:text-valorant-red transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="GitHub"
                 >
                   <Github />
